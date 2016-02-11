@@ -30,7 +30,7 @@ testing <- testing[,-c(2,5)]
 pmlTesting <- pmlTesting[,-c(2,5)]
 
 ## random forest
-modelRF <-randomForest(classe ~ ., data = training)
+modelRF <-randomForest(classe ~ ., data = training, ntree =200)
 testing$RF <- predict(modelRF, testing)
 
 ## Check accuracy

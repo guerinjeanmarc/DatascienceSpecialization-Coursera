@@ -250,8 +250,8 @@ testing &lt;- testing[,-c(2,5)]</code></pre>
 </div>
 <div id="train-random-forest-model" class="section level2">
 <h2>Train Random Forest model</h2>
-<p>A random forest aglorithm is trained with 100 trees for a first prediction. We can refine its parameters or compare to other algorithm later, based on its accuracy.</p>
-<pre class="r"><code>modelRF &lt;-randomForest(classe ~ ., data = training, ntree =100)
+<p>A random forest aglorithm is trained with 200 trees for a first prediction. We can refine its parameters or compare to other algorithm later, based on its accuracy.</p>
+<pre class="r"><code>modelRF &lt;-randomForest(classe ~ ., data = training, ntree =200)
 testing$RF &lt;- predict(modelRF, testing)</code></pre>
 </div>
 <div id="assess-performance-on-validation-set" class="section level2">
@@ -263,36 +263,36 @@ testing$RF &lt;- predict(modelRF, testing)</code></pre>
 ## Prediction    A    B    C    D    E
 ##          A 1674    0    0    0    0
 ##          B    0 1139    0    0    0
-##          C    0    1 1025    0    0
+##          C    0    0 1026    0    0
 ##          D    0    0    0  964    0
 ##          E    0    0    0    0 1082
 ## 
 ## Overall Statistics
 ##                                      
-##                Accuracy : 0.9998     
-##                  95% CI : (0.9991, 1)
+##                Accuracy : 1          
+##                  95% CI : (0.9994, 1)
 ##     No Information Rate : 0.2845     
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
 ##                                      
-##                   Kappa : 0.9998     
+##                   Kappa : 1          
 ##  Mcnemar's Test P-Value : NA         
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            1.0000   0.9991   1.0000   1.0000   1.0000
-## Specificity            1.0000   1.0000   0.9998   1.0000   1.0000
-## Pos Pred Value         1.0000   1.0000   0.9990   1.0000   1.0000
-## Neg Pred Value         1.0000   0.9998   1.0000   1.0000   1.0000
-## Prevalence             0.2845   0.1937   0.1742   0.1638   0.1839
-## Detection Rate         0.2845   0.1935   0.1742   0.1638   0.1839
+## Sensitivity            1.0000   1.0000   1.0000   1.0000   1.0000
+## Specificity            1.0000   1.0000   1.0000   1.0000   1.0000
+## Pos Pred Value         1.0000   1.0000   1.0000   1.0000   1.0000
+## Neg Pred Value         1.0000   1.0000   1.0000   1.0000   1.0000
+## Prevalence             0.2845   0.1935   0.1743   0.1638   0.1839
+## Detection Rate         0.2845   0.1935   0.1743   0.1638   0.1839
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1638   0.1839
-## Balanced Accuracy      1.0000   0.9996   0.9999   1.0000   1.0000</code></pre>
-<p>Overall statistics: Accuracy is almost perfect (0.9998), only one row has been incorrectly classified. We can try to submit the test set.</p>
+## Balanced Accuracy      1.0000   1.0000   1.0000   1.0000   1.0000</code></pre>
+<p>Overall statistics: All the rows have been perfectly classified! Accuracy is 1, out of sample error is 0. We can try to submit the test set.</p>
 </div>
 <div id="assess-performance-on-test-set" class="section level2">
 <h2>Assess performance on test set</h2>
-<pre class="r"><code>#pmlTesting$RF &lt;- predict(modelRF, pmlTesting)</code></pre>
+<pre class="r"><code>#pmlTesting$RF &lt;- predict(modelRF, pmlTesting, type=&quot;class&quot;)</code></pre>
 <p>We were given 20 test cases to apply the algorithm. 100% of the predictions from this simple algorithm were right!</p>
 </div>
 </div>
